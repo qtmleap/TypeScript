@@ -10,6 +10,7 @@
     "start": "bun dist/index.js",
     "prebuild": "rimraf dist",
     "build": "bun build src/index.ts --minify --outdir dist --outfile=index.js",
+    "deploy": "wrangler deploy --env production --minify",
     "prepare": "husky"
   },
   "dependencies": {},
