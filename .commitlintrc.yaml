@@ -19,6 +19,7 @@ rules:
       - refactor
       - revert
       - format
+      - chore
       - test
 prompt:
   messages:
