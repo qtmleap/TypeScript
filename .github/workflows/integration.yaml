@@ -34,9 +34,20 @@ jobs:
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - name: Format
+      - name: Check
         run: |
-          bunx @biomejs/biome format src
-      - name: Lint
+          bunx @biomejs/biome check src __tests__
+  test:
+    name: Test
+    runs-on: ubuntu-24.04
+    if: github.event.action != 'closed' || github.event.pull_request.merged != true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Test
         run: |
-          bunx @biomejs/biome lint src
+          bun test

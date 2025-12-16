@@ -41,6 +41,7 @@
         "bradlc.vscode-tailwindcss",
         "eamodio.gitlens",
         "redhat.vscode-yaml",
+        "spmeesseman.vscode-taskexplorer",
         "tamasfe.even-better-toml",
         "vsls-contrib.gitdoc"
       ],
