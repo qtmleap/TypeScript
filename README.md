@@ -1,61 +1,124 @@
-## TypeScript + Bun
+# React + TypeScript + Cloudflare Workers
 
-TypeScript + Bunで動作するテンプレートレポジトリです
+React、TypeScript、Cloudflare Workersを使用したWebアプリケーション開発のためのテンプレートプロジェクトです。
 
-### 技術スタック
+## 概要
 
-- DevContainer
-- [Node.js](https://github.com/nodejs/node)
-- [Bun](https://github.com/oven-sh/bun)
-- [commitlint](https://github.com/conventional-changelog/commitlint)
-- [husky](https://github.com/typicode/husky)
-- [lint-staged](https://github.com/lint-staged/lint-staged)
-- [PR Agent](https://github.com/Codium-ai/pr-agent)
-- GitHub Actions
+このテンプレートは、モダンなフロントエンド開発環境とCloudflare Workersによるエッジコンピューティング環境を統合した開発基盤を提供します。DevContainerによる完全に分離された開発環境により、環境構築の手間を最小限に抑えます。
 
-#### 備考
+## 技術スタック
 
-- DevContainerを利用したホストマシンから分断したクリーンな開発環境
-- 高速かつ軽量なNode.jsランタイムであるBunの採用
-- husky+commitlintdでコミットメッセージのルールの厳格化
-- lint-stagedでプッシュ前にコードフォーマットの実行
-- マージ済みブランチの自動削除に対応
-- GPG Keyを利用して署名付きコミットに対応
-- GPG Keyによる署名の有効化
-- プッシュと同時にブランチを作成する`push.autoSetupRemote`を有効化
-- [act](https://github.com/nektos/act)を利用してローカルでGitHub Actionsのテスト実行に対応
-- GitHub ActionsでCI/CDを実行
-- PR AgentでChatGPTを利用した自動コードレビュー
-- モジュールインポート時に`@`を利用して相対パスに対応
-- リリースバージョンのバリデーション実行
+### コア
 
-## 構築
+- [Bun](https://github.com/oven-sh/bun) - 高速なJavaScriptランタイム
+- [TypeScript](https://www.typescriptlang.org/) - 型安全なJavaScript
+- [React](https://react.dev/) - UIライブラリ
+- [Vite](https://vitejs.dev/) - 高速なビルドツール
+
+### フロントエンド
+
+- [Tanstack Query](https://tanstack.com/query) - データフェッチング・状態管理
+- [Tanstack Router](https://tanstack.com/router) - 型安全なルーティング
+- [Tailwind CSS](https://tailwindcss.com/) - ユーティリティファーストCSS
+- [Shadcn UI](https://ui.shadcn.com/) - 再利用可能なUIコンポーネント
+- [IntLayer](https://intlayer.org/) - 国際化対応
+
+### バックエンド・API
+
+- [Cloudflare Workers](https://workers.cloudflare.com/) - エッジコンピューティング
+- [Zodios](https://www.zodios.org/) - 型安全なAPIクライアント
+- [Zod](https://zod.dev/) - スキーマバリデーション
+
+### 開発ツール
+
+- [DevContainer](https://containers.dev/) - コンテナベース開発環境
+- [Biome](https://biomejs.dev/) - 高速なリンター・フォーマッター
+- [commitlint](https://github.com/conventional-changelog/commitlint) - コミットメッセージ規約
+- [husky](https://github.com/typicode/husky) - Gitフック管理
+- [lint-staged](https://github.com/lint-staged/lint-staged) - ステージングファイルのリント
+- [act](https://github.com/nektos/act) - ローカルでのGitHub Actions実行
+- [PR Agent](https://github.com/Codium-ai/pr-agent) - AI自動コードレビュー
+
+## 環境構築
+
+### 前提条件
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Dev Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+### セットアップ
 
 ```zsh
-git clone https://github.com/Magisleap/TypeScript
-cd TypeScript
+git clone <repository-url>
+cd <repository-name>
 ```
 
-VSCodeから`cmd/ctrl + Shift + p`でコマンドパレットを開き, DevContainerで立ち上げます.
+VS Codeでプロジェクトを開き、`Cmd/Ctrl + Shift + P`でコマンドパレットを開いて`Dev Containers: Reopen in Container`を実行します。
 
-> DevContainerの実行にはExtensionのインストールとDocker Desktopのインストールが必要になります
+## 開発
 
-### 開発
+### ローカル開発サーバー起動
 
 ```zsh
 bun dev
 ```
 
-で実行できます
+### ビルド
 
-### GitHub
+```zsh
+bun run build
+```
 
-PR Agentを利用する場合, レポジトリシークレットに`OPENAI_KEY`を追加してください.
+### テスト実行
 
-[テンプレートファイル](https://pr-agent-docs.codium.ai/usage-guide/configuration_options/)については`.pr_agent.toml`に書き込まれているので適時変更してください. デフォルトでは日本語でコメントされるようになっています.
+```zsh
+bun test
+```
 
-### FAQ
+### リント・フォーマット
 
-- Node.jsのバージョンを`20.17.0`以降に上げるとcommitlintが正しく動作しなくなります
-- Node.jsをインストールしないとcommitlintを含む一部の機能が動作しません
-- プッシュ時にリモートブランチ作成のオプションはgitのバージョンが`2.37.0`以降である必要があります
+```zsh
+# リント実行
+bun run lint
+
+# フォーマット実行
+bun run format
+```
+
+## プロジェクト構成
+
+```
+src/
+├── components/        # Reactコンポーネント
+│   ├── ui/           # Shadcn UIコンポーネント（編集不可）
+│   └── **/*.tsx      # カスタムコンポーネント
+├── schemas/          # Zodスキーマ定義
+│   └── **/*.dto.ts   # DTOスキーマ
+├── utils/            # ユーティリティ関数
+│   └── client.ts     # Zodios APIクライアント
+└── __tests__/        # テストコード
+    └── **/*.test.ts  # テストファイル
+```
+
+## GitHub設定
+
+### PR Agent
+
+PR Agentを使用する場合、リポジトリのSecretsに以下を設定してください。
+
+- `OPENAI_KEY`: OpenAI APIキー
+
+設定は`.pr_agent.toml`で管理されています。デフォルトでは日本語でコメントが生成されます。
+
+### その他の機能
+
+- マージ済みブランチの自動削除
+- GPG署名付きコミット対応
+- `push.autoSetupRemote`によるブランチ自動作成
+
+## 注意事項
+
+- `src/components/ui/**/*.tsx`のShadcn UIコンポーネントは直接編集せず、`className`でスタイルをカスタマイズしてください
+- モジュールインポートには`@`エイリアスを使用できます
+- コミットメッセージはConventional Commits規約に従ってください
