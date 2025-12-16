@@ -1,23 +1,21 @@
 {
-  "name": "TypeScript",
-  "dockerComposeFile": [
-    "docker-compose.yaml"
-  ],
+  "name": "TypeScript+Wrangler",
+  "dockerComposeFile": ["compose.yaml"],
   "service": "app",
   "workspaceFolder": "/home/vscode/app",
   "shutdownAction": "stopCompose",
   "remoteUser": "vscode",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {
-      "version": "2.48.1"
+      "version": "2.52.0"
     },
-    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
     },
     "ghcr.io/shyim/devcontainers-features/bun:0": {},
-    "ghcr.io/devcontainers/features/node:1.5.0": {
-      "version": "24.7.0"
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24.11.0"
     },
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "moby": false,
@@ -42,7 +40,6 @@
         "biomejs.biome",
         "bradlc.vscode-tailwindcss",
         "eamodio.gitlens",
-        "ms-vscode.vscode-typescript-next",
         "redhat.vscode-yaml",
         "tamasfe.even-better-toml",
         "vsls-contrib.gitdoc"
