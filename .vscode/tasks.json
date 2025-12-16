@@ -5,11 +5,7 @@
       "label": "Run Integration Workflow with act",
       "type": "shell",
       "command": "act",
-      "args": [
-        "push",
-        "-W",
-        ".github/workflows/integration.yaml"
-      ],
+      "args": ["push", "-W", ".github/workflows/integration.yaml"],
       "problemMatcher": [],
       "group": {
         "kind": "test",
