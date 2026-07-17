@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2020", // 出力するJavaScriptのバージョン
     "module": "ESNext", // ESモジュール形式
-    "moduleResolution": "node", // モジュール解決の戦略
+    "moduleResolution": "bundler", // モジュール解決の戦略
     "declarationDir": "./dist", // 型定義ファイルの出力先ディレクトリ
     "outDir": "./dist", // 出力先ディレクトリ
     "strict": true, // 厳格な型チェックを有効にする

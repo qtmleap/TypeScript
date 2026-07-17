@@ -220,3 +220,4 @@ $RECYCLE.BIN/
 # Cloudflare/Wrangler
 .dev.vars
 .wrangler/
+worker-configuration.d.ts
